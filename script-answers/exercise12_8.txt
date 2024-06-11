@@ -1,0 +1,114 @@
+Script started on 2024-03-28 17:17:18+02:00 [TERM="xterm-256color" TTY="/dev/pts/6" COLUMNS="132" LINES="15"]
+]0;dmitri@LAPTOP-VNT3PO3A: ~/FullStack/full_stack_p_12/todo-app/todo-backend[01;32mdmitri@LAPTOP-VNT3PO3A[00m:[01;34m~/FullStack/full_stack_p_12/todo-app/todo-backend[00m$ [K]0;dmitri@LAPTOP-VNT3PO3A: ~/FullStack/full_stack_p_12/todo-app/todo-backend[01;32mdmitri@LAPTOP-VNT3PO3A[00m:[01;34m~/FullStack/full_stack_p_12/todo-app/todo-backend[00m$ PS1='\u:\W\$ '
+dmitri:todo-backend$ dokc[K[K[K[Kdocker container ls[K[K[K[K[K[K[K[K[K[K[K[Kimage ls 
+REPOSITORY         TAG       IMAGE ID       CREATED         SIZE
+todo-server        latest    f424d3e1a31f   29 hours ago    1.11GB
+express-server     latest    c5305d85158a   45 hours ago    1.11GB
+fs-hello-world     latest    c52eaae9e7d3   46 hours ago    1.1GB
+hello-node-world   latest    36419cd1f83b   3 days ago      331MB
+mongo              latest    24041ceefc56   9 days ago      755MB
+node               20        2e805f601f2b   2 weeks ago     1.1GB
+ubuntu             latest    ca2b0f26964c   4 weeks ago     77.9MB
+nginx              latest    92b11f67642b   6 weeks ago     187MB
+hello-world        latest    d2c94e258dcb   11 months ago   13.3kB
+dmitri:todo-backend$ [Kdmitri:todo-backend$ [Kdmitri:todo-backend$ [Kdmitri:todo-backend$ docker container ls -a
+CONTAINER ID   IMAGE              COMMAND                  CREATED        STATUS                      PORTS     NAMES
+5cacb3f3991c   todo-server        "docker-entrypoint.s…"   27 hours ago   Exited (137) 27 hours ago             todo-backend-app-1
+b285ecc26abe   todo-server        "docker-entrypoint.s…"   29 hours ago   Exited (137) 29 hours ago             distracted_hertz
+5e616f6ce7b0   express-server     "docker-entrypoint.s…"   45 hours ago   Exited (137) 45 hours ago             jolly_gates
+b5052db7250c   fs-hello-world     "docker-entrypoint.s…"   46 hours ago   Exited (137) 46 hours ago             mystifying_lederberg
+dfcdfc988f6d   fs-hello-world     "docker-entrypoint.s…"   46 hours ago   Exited (0) 46 hours ago               inspiring_elbakyan
+9364b71d3809   node:20            "docker-entrypoint.s…"   3 days ago     Exited (137) 3 days ago               hello-node
+0e4c80448143   hello-node-world   "bash"                   3 days ago     Exited (137) 3 days ago               vigilant_chaum
+49e7b71256cb   hello-node-world   "-it bash"               3 days ago     Created                               confident_robinson
+5744053c5344   hello-world        "/hello"                 3 days ago     Exited (0) 3 days ago                 upbeat_khorana
+c59b35b1b43e   hello-world        "/hello"                 3 days ago     Exited (0) 3 days ago                 focused_rosalind
+56907a09adf5   hello-world        "/hello"                 3 days ago     Exited (0) 3 days ago                 confident_antonelli
+dmitri:todo-backend$ [Kdmitri:todo-backend$ [Kdmitri:todo-backend$ [Kdmitri:todo-backend$ [Kdmitri:todo-backend$ [Kdmitri:todo-backend$ [Kdmitri:todo-backend$ [Kdmitri:todo-backend$ [Kdmitri:todo-backend$ [Kdmitri:todo-backend$ [Kdmitri:todo-backend$ docker compose -f docker-compose.dev.yml up -d
+[33mWARN[0m[0000] /home/dmitri/FullStack/full_stack_p_12/todo-app/todo-backend/docker-compose.dev.yml: `version` is obsolete 
+[33mWARN[0m[0000] Found orphan containers ([todo-backend-app-1]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up. 
+[1A[1B[0G[?25l[+] Running 0/0
+ [33m⠋[0m Container todo-backend-mongo-1  Starting                                                                                    [34m0.1s [0m
+[?25h[1A[1A[0G[?25l[+] Running 0/1
+ [33m⠙[0m Container todo-backend-mongo-1  Starting                                                                                    [34m0.2s [0m
+[?25h[1A[1A[0G[?25l[+] Running 0/1
+ [33m⠹[0m Container todo-backend-mongo-1  Starting                                                                                    [34m0.3s [0m
+[?25h[1A[1A[0G[?25l[34m[+] Running 1/1[0m
+ [32m✔[0m Container todo-backend-mongo-1  [32mStarted[0m                                                                                     [34m0.3s [0m
+[?25hdmitri:todo-backend$ curl http://localhost:3000[K[K[K456
+It looks like you are trying to access MongoDB over HTTP on the native driver port.
+dmitri:todo-backend$ docker [Kdmitri:todo-backend$ docker [Kdmitri:todo-backend$ docker [Kdmitri:todo-backend$ docker container ls
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                         NAMES
+18f9538fa12a   mongo     "docker-entrypoint.s…"   46 seconds ago   Up 45 seconds   0.0.0.0:3456->27017/tcp, :::3456->27017/tcp   todo-backend-mongo-1
+dmitri:todo-backend$ docker exec -it todo-backend-mongo-1 bash
+[?2004hroot@18f9538fa12a:/# mongosh -u root -p example
+[?2004l]0;mongosh mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000Current Mongosh Log ID:	66058a9a79a52e625bdb83af
+Connecting to:		[1m[32mmongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.0[0m
+Using MongoDB:		7.0.7
+[1m[33mUsing Mongosh[0m:		2.2.0
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+[1G[0J [1G[1m[33m------[0m
+   [1m[33mThe server generated these startup warnings when booting[0m
+   2024-03-28T15:18:34.977+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2024-03-28T15:18:35.872+00:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never' in this binary version
+   2024-03-28T15:18:35.872+00:00: Soft rlimits for open file descriptors too low
+[1m[33m------[0m
+
+[1G[0Jtest> [7Gshow dbs
+[1madmin[0m         100.00 KiB
+[1mconfig[0m        108.00 KiB
+[1mlocal[0m          72.00 KiB
+[1mthe_database[0m  112.00 KiB
+[1G[0Jtest> [7Guse the_database
+switched to db the_database
+[1G[0Jthe_database> [15Gshow collections
+[1mproducts[0m
+[1mtodos[0m
+[1G[0Jthe_database> [15Gdb.todos.find({});
+[
+  {
+    _id: ObjectId([32m'66042ec1e928d4920bdb83b1'[39m),
+    text: [32m'Learn about containers'[39m,
+    done: [33mfalse[39m
+  },
+  {
+    _id: ObjectId([32m'660589453efda62092db83b1'[39m),
+    text: [32m'Write code'[39m,
+    done: [33mfalse[39m
+  }
+]
+[1G[0Jthe_database> [15G[1G[0Jthe_database> [15Gdb.todos.insertOne({[32m"[39m[32mt[39m[32me[39m[32mx[39m[32mt[39m[32m"[39m:[32m"[39m[32mI[39m[32mn[39m[32mc[39m[32mr[39m[32me[39m[32ma[39m[32ms[39m[32me[39m [32mt[39m[32mh[39m[32me[39m [32mn[39m[32mu[39m[32mm[39m[32mb[39m[32me[39m[32mr[39m [32mo[39m[32mf[39m [32mt[39m[32mo[39m[32mo[39m[32ml[39m[32ms[39m [32mi[39m[32mn[39m [32mm[39m[32my[39m [32mt[39m[32mo[39m[32mo[39m[32ml[39m[32mb[39m[32me[39m[32ml[39m[32mt[39m[32m"[39m, [32m"[39m[32md[39m[32mo[39m[32mn[39m[32me[39m[32m"[39m:fals[33mfalse[39m});
+{
+  acknowledged: [33mtrue[39m,
+  insertedId: ObjectId([32m'66058add79a52e625bdb83b0'[39m)
+}
+[1G[0Jthe_database> [15G[1G[0Jthe_database> db.todos.insertOne({[32m"text"[39m:[32m"Increase the number of tools in my toolbelt"[39m, [32m"done"[39m:[33mfalse[39m});[104G[1G[0Jthe_database> db.todos.find({});[33G
+[
+  {
+    _id: ObjectId([32m'66042ec1e928d4920bdb83b1'[39m),
+    text: [32m'Learn about containers'[39m,
+    done: [33mfalse[39m
+  },
+  {
+    _id: ObjectId([32m'660589453efda62092db83b1'[39m),
+    text: [32m'Write code'[39m,
+    done: [33mfalse[39m
+  },
+  {
+    _id: ObjectId([32m'66058add79a52e625bdb83b0'[39m),
+    text: [32m'Increase the number of tools in my toolbelt'[39m,
+    done: [33mfalse[39m
+  }
+]
+[1G[0Jthe_database> [15G[1G[0Jthe_database> [15G[1G[0Jthe_database> [15G[1G[0Jthe_database> [15G[1G[0Jthe_database> [15G[1G[0Jthe_database> [15G[1G[0Jthe_database> [15G
+(To exit, press Ctrl+C again or Ctrl+D or type .exit)
+[1G[0Jthe_database> [15G
+[?2004hroot@18f9538fa12a:/# exit
+[?2004lexit
+dmitri:todo-backend$ [Kdmitri:todo-backend$ curl http://localhost:3000/todos
+[{"_id":"66042ec1e928d4920bdb83b1","text":"Learn about containers","done":false},{"_id":"660589453efda62092db83b1","text":"Write code","done":false},{"_id":"66058add79a52e625bdb83b0","text":"Increase the number of tools in my toolbelt","done":false}]dmitri:todo-backend$ exit
+exit
+
+Script done on 2024-03-28 17:22:46+02:00 [COMMAND_EXIT_CODE="0"]
